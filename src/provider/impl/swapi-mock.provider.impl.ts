@@ -1,16 +1,35 @@
-import { injectable } from 'inversify';
+import { inject, injectable, named } from 'inversify';
 import { $log } from 'ts-log-debug';
 import { SwapiProvider } from '../swapi.provider';
+import TYPES from '../../types';
+import TAG from '../../tag';
+import ApiConnectorUtil from '../../utils/api-connector';
+import { HOST, NAME, NAME_TYPE } from '../../utils/enum';
+import ResponseProvider from '../../interfaces/provider-response.interface';
 
 @injectable()
 export default class SwapiMockProviderImpl implements SwapiProvider {
-	// eslint-disable-next-line class-methods-use-this
-	public async get(data: any): Promise<any> {
-		$log.info(``);
-		return data;
+	constructor(
+		@inject(TYPES.ApiConnectorUtil)
+		@named(TAG.SWAPI_PROD)
+		private ApiConnectorUtil: ApiConnectorUtil
+	) {}
+
+	public async get(word: string): Promise<ResponseProvider> {
+		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET}`);
+		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET} Request: `, JSON.stringify({}));
+		const endpoint: string = `/api/people/?search=${word}`;
+		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET} endpoint: ${HOST.SWAPI + endpoint}`);
+		const { statusCode, body } = await this.ApiConnectorUtil.get(endpoint);
+		$log.debug(`${NAME_TYPE.PROVIDER + NAME.GET} Response: `, JSON.stringify({ statusCode, body }));
+		return {
+			statusCode,
+			body,
+		};
 	}
-	public async post(data: any): Promise<any> {
+	public async post(data: any): Promise<ResponseProvider> {
 		$log.info(``);
+
 		return data;
 	}
 }

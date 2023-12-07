@@ -21,18 +21,34 @@ export enum HEADERS_VALUE {
 	APPLICATION_JSON = 'application/json',
 }
 export enum HOST {
-	SWAPI = '',
+	SWAPI = 'https://swapi.py4e.com',
 }
 export enum NAME_TYPE {
 	SERVICE = 'Service | ',
 	HANDLER = 'handler | ',
-	MAPPER = 'Mapper | ',
+	DATA_MAPPER = 'Data Mapper | ',
+	PROVIDER = 'Provider | ',
 	API_CONNECTOR = 'Api Connector | ',
 }
 export enum NAME {
 	CREATE = 'create() | ',
 	GET = 'get() | ',
+	PARSE_PEOPLE = 'parsePeople() | ',
+	PARSE_STATUS_CODE = 'parseStatusCode() | ',
 }
 export enum TIMEOUT {
 	PROVIDER = 7001,
+}
+export enum POSITION {
+	ZERO = 0,
+	FIRST = 1,
+	SECOND = 2,
+	THIRD = 3,
+	FOURTH = 4,
+	FIFTH = 5,
+	SIXTH = 6,
+	SEVENTH = 7,
+	EIGHTH = 8,
+	NINTH = 9,
+	TENTH = 10,
 }

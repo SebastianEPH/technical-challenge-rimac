@@ -1,21 +1,40 @@
 import { $log } from 'ts-log-debug';
 import { injectable } from 'inversify';
-import { HEADERS, HTTP, NAME_TYPE } from '../utils/enum';
+import { HEADERS, HTTP, NAME, NAME_TYPE } from '../utils/enum';
+import { PeopleSwapiResponse } from '../interfaces/people-swapi-response.interface';
+import { PeopleResponse } from '../interfaces/people-response.interface';
 
 @injectable()
 export default class DataMapper {
 	// eslint-disable-next-line class-methods-use-this
-	public async mapperr(data: any): Promise<any> {
-		$log.info(` function `);
-		return data;
+	public static parsePeople(people: PeopleSwapiResponse): PeopleResponse {
+		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_PEOPLE);
+		return {
+			nombre: people.name,
+			altura: people.height,
+			masa: people.mass,
+			color_del_cabello: people.hair_color,
+			color_de_piel: people.skin_color,
+			color_de_ojos: people.eye_color,
+			fecha_de_nacimiento: people.birth_year,
+			genero: people.gender,
+			planeta_natal: people.homeworld,
+			peliculas: people.films,
+			especies: people.species,
+			vehiculos: people.vehicles,
+			naves_estelares: people.starships,
+			creado: people.created,
+			editado: people.edited,
+			url: people.url,
+		};
 	}
 
 	public static parseStatusCode(status: string): HTTP {
-		$log.info(`${NAME_TYPE.MAPPER} function parseStatusCode()`);
+		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_STATUS_CODE);
 		if (!/^\d+$/.test(status)) return HTTP.STATUS_CODE_500;
 
 		if (Object.values(HTTP).includes(Number(status) as HTTP)) return Number(status) as HTTP;
-		$log.warn(`${NAME_TYPE.MAPPER} function parseStatusCode() | No status code found`);
+		$log.warn(`${NAME_TYPE.DATA_MAPPER} function parseStatusCode() | No status code found`);
 		return HTTP.STATUS_CODE_500;
 	}
 

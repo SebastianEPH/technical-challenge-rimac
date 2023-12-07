@@ -17,5 +17,5 @@ export const handlerCreate: Handler = async (event: any, context: any): Promise<
 export const handlerGet: Handler = async (event: any, context: any): Promise<ResponseVO> => {
 	context.callbackWaitsForEmptyEventLoop = false;
 	const tokenController: StarwarsHandler = container.get<StarwarsHandler>(TYPES.StarWarsHandler);
-	return tokenController.create(event);
+	return tokenController.get(event);
 };

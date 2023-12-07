@@ -21,10 +21,10 @@ functions:
       APP_ENV: local
     events:
       - httpApi:
-          path: /api/v1/starwars/character
+          path: /api/v1/starwars/people
           method: post
   get:
-    handler: src/index.tokenController
+    handler: src/index.handlerGet
     package:
       patterns:
         - 'config/.env*'
@@ -32,7 +32,7 @@ functions:
       APP_ENV: local
     events:
       - httpApi:
-          path: /api/v1/starwars/character/{id}
+          path: /api/v1/starwars/people/{id}
           method: get
 custom:
   esbuild:
