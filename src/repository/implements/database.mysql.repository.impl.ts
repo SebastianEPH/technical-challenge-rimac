@@ -6,6 +6,7 @@ import { NAME, NAME_TYPE } from '../../utils/enum';
 import { ConnectionDatabase } from '../../database/connection.database';
 import TYPES from '../../types';
 import MysqlQueries from '../../database/queries/mysql.queries';
+import { PeopleDatabaseResponse } from '../../interfaces/people-database-response.interface';
 
 @injectable()
 export default class DatabaseMysqlRepositoryImpl implements DatabaseRepository {
@@ -32,10 +33,19 @@ export default class DatabaseMysqlRepositoryImpl implements DatabaseRepository {
 		$log.info('nuevaPersona:   ', nuevaPersona);
 		$log.info('peopleResponse: ', peopleResponse);
 
-		const result = await this.coreClientDb.connection().query(query, nuevaPersona);
-
+		const result = await this.coreClientDb.pool().query(query, nuevaPersona);
 		console.log('Persona insertada. ID:', result);
-
 		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params: nuevaPersona }));
+	}
+
+	public async get(peopleResponse: any): Promise<PeopleDatabaseResponse[]> {
+		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.GET);
+		const query = MysqlQueries.get;
+		const [result, gaaa] = await this.coreClientDb.pool().query(query);
+		console.log('get | result:', result);
+		console.log('get | gaaa:', gaaa);
+
+		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params: '' }));
+		return result as PeopleDatabaseResponse[];
 	}
 }

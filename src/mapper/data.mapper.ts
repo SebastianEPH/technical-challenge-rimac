@@ -3,12 +3,21 @@ import { injectable } from 'inversify';
 import { HEADERS, HTTP, NAME, NAME_TYPE, POSITION } from '../utils/enum';
 import { PeopleSwapiResponse } from '../interfaces/people-swapi-response.interface';
 import { PeopleResponse } from '../interfaces/people-response.interface';
+import { PeopleDatabaseResponse } from '../interfaces/people-database-response.interface';
 
 @injectable()
 export default class DataMapper {
 	// eslint-disable-next-line class-methods-use-this
-	public static parsePeople(people: PeopleSwapiResponse): PeopleResponse {
-		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_PEOPLE);
+	public static parsePeopleSwapi(people: PeopleSwapiResponse): PeopleResponse {
+		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_PEOPLE_SWAPI);
+		return this.parsePeopleEnglishToSpanish(people);
+	}
+
+	public static parsePeopleDatabase(people: PeopleDatabaseResponse): PeopleResponse {
+		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_PEOPLE_DATABASE);
+		return this.parsePeopleEnglishToSpanish(people);
+	}
+	private static parsePeopleEnglishToSpanish(people: PeopleDatabaseResponse | PeopleSwapiResponse): PeopleResponse {
 		return {
 			nombre: people.name,
 			altura: people.height,
@@ -19,16 +28,15 @@ export default class DataMapper {
 			fecha_de_nacimiento: people.birth_year,
 			genero: people.gender,
 			planeta_natal: people.homeworld,
-			peliculas: people.films,
-			especies: people.species,
-			vehiculos: people.vehicles,
-			naves_estelares: people.starships,
+			peliculas: people?.films,
+			especies: people?.species,
+			vehiculos: people?.vehicles,
+			naves_estelares: people?.starships,
 			creado: people.created,
 			editado: people.edited,
 			url: people.url,
 		};
 	}
-
 	public static parseStatusCode(status: string): HTTP {
 		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_STATUS_CODE);
 		if (!/^\d+$/.test(status)) return HTTP.STATUS_CODE_500;

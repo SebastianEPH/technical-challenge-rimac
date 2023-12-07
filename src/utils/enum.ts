@@ -34,7 +34,8 @@ export enum NAME_TYPE {
 export enum NAME {
 	CREATE = 'create() | ',
 	GET = 'get() | ',
-	PARSE_PEOPLE = 'parsePeople() | ',
+	PARSE_PEOPLE_SWAPI = 'parsePeopleSwapi() | ',
+	PARSE_PEOPLE_DATABASE = 'parsePeopleDatabase() | ',
 	PARSE_STATUS_CODE = 'parseStatusCode() | ',
 }
 export enum TIMEOUT {

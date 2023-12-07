@@ -14,6 +14,7 @@ import CreateRequest from '../../handler/request/create.request';
 import RequestValidator from '../../utils/request-validator';
 import BodyBadRequestException from '../../common/exceptions/body-bad-request.exception';
 import { PeopleResponse } from '../../interfaces/people-response.interface';
+import { PeopleDatabaseResponse } from '../../interfaces/people-database-response.interface';
 
 @injectable()
 export default class StarwarsServiceImpl implements StarwarsService {
@@ -30,19 +31,16 @@ export default class StarwarsServiceImpl implements StarwarsService {
 		if (error) {
 			throw new BodyBadRequestException(NAME_TYPE.SERVICE + NAME.CREATE, 'Error validating the parameters in the request', error);
 		}
-
 		const peopleResponse: PeopleSwapiResponse = await this._searchByWord(createRequest.word);
-
 		await this.databaseRepository.create(peopleResponse);
-
-		return DataMapper.parsePeople(peopleResponse);
+		return DataMapper.parsePeopleSwapi(peopleResponse);
 	}
-	public async get(data: RequestGetInterface): Promise<any> {
-		$log.info(`function get`);
-		const peopleResponse: PeopleSwapiResponse = await this._searchByWord(data.id);
+	public async get(data: RequestGetInterface): Promise<PeopleResponse> {
+		$log.info(`function get`, data);
 
-		$log.info(`function get`, JSON.stringify(peopleResponse));
-		return peopleResponse;
+		const peopleDatabaseResponses: PeopleDatabaseResponse[] = await this.databaseRepository.get({});
+		$log.info(`function get`, JSON.stringify(peopleDatabaseResponses));
+		return peopleDatabaseResponses.map((people) => DataMapper.parsePeopleDatabase(people));
 	}
 
 	private async _searchByWord(word: string): Promise<PeopleSwapiResponse> {

@@ -9,7 +9,7 @@ export class ConnectionMysqlDatabase implements ConnectionDatabase {
 		this.pools = createPool(dbConfig);
 	}
 
-	connection(): Pool {
+	pool(): Pool {
 		return this.pools;
 	}
 }
