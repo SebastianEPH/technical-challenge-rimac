@@ -17,7 +17,6 @@ import { PeopleResponse } from '../../interfaces/people-response.interface';
 
 @injectable()
 export default class StarwarsServiceImpl implements StarwarsService {
-	// @ts-ignore
 	constructor(
 		@inject(TYPES.DatabaseRepository) private databaseRepository: DatabaseRepository,
 		@inject(TYPES.SwapiProvider)
@@ -29,18 +28,18 @@ export default class StarwarsServiceImpl implements StarwarsService {
 
 		const error = await RequestValidator.validateRequest(createRequest);
 		if (error) {
-			throw new BodyBadRequestException(`${NAME_TYPE.SERVICE + NAME.CREATE}`, 'Error validating the parameters in the request', error);
+			throw new BodyBadRequestException(NAME_TYPE.SERVICE + NAME.CREATE, 'Error validating the parameters in the request', error);
 		}
 
 		const peopleResponse: PeopleSwapiResponse = await this._searchByWord(createRequest.word);
+
+		await this.databaseRepository.create(peopleResponse);
 
 		return DataMapper.parsePeople(peopleResponse);
 	}
 	public async get(data: RequestGetInterface): Promise<any> {
 		$log.info(`function get`);
 		const peopleResponse: PeopleSwapiResponse = await this._searchByWord(data.id);
-
-		await this.databaseRepository.create({});
 
 		$log.info(`function get`, JSON.stringify(peopleResponse));
 		return peopleResponse;

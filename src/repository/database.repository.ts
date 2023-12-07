@@ -1,3 +1,5 @@
+import { PeopleSwapiResponse } from '../interfaces/people-swapi-response.interface';
+
 export interface DatabaseRepository {
-	create(data: any): Promise<any>;
+	create(peopleResponse: PeopleSwapiResponse): Promise<any>;
 }

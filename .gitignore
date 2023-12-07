@@ -113,3 +113,9 @@ logfile.txt
 /build
 *.zip
 
+/.esbuild/
+/.esbuild/
+/.esbuild/.build/
+/.esbuild/
+/dockerData/
+/package-lock.json

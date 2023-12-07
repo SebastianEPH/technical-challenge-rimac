@@ -3,7 +3,7 @@ services:
   mysql:
     image: mysql:latest
     volumes:
-      - mysql-8-develop:/var/lib/mysql
+      - C:\dockerData\mysql-8-develop:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${DATABASE_MYSQL_PASSWORD}
       MYSQL_DATABASE: ${DATABASE_MYSQL_NAME}
@@ -17,10 +17,3 @@ services:
 networks:
   develop:
     driver: bridge
-volumes:
-  mysql-8-develop:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./dockerData/mysql-8-develop

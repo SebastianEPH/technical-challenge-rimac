@@ -1,6 +1,6 @@
 import { $log } from 'ts-log-debug';
 import { injectable } from 'inversify';
-import { HEADERS, HTTP, NAME, NAME_TYPE } from '../utils/enum';
+import { HEADERS, HTTP, NAME, NAME_TYPE, POSITION } from '../utils/enum';
 import { PeopleSwapiResponse } from '../interfaces/people-swapi-response.interface';
 import { PeopleResponse } from '../interfaces/people-response.interface';
 
@@ -44,5 +44,12 @@ export default class DataMapper {
 			application: headers[HEADERS.APPLICATION] || HEADERS.APPLICATION.toLowerCase() || headers[HEADERS.APPLICATION.toUpperCase()],
 			userAgent: headers[HEADERS.USER_AGENT] || HEADERS.USER_AGENT.toLowerCase() || headers[HEADERS.USER_AGENT.toUpperCase()],
 		};
+	}
+	public static parseArray(arr: any[]): string[] {
+		const result: string[] = [];
+		arr.forEach((element, index): void => {
+			result.push(`$${String(index + POSITION.FIRST).padEnd(POSITION.SECOND, ' ')} ${element}`);
+		});
+		return result;
 	}
 }
