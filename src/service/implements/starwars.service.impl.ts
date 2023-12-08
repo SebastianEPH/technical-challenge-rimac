@@ -33,7 +33,7 @@ export default class StarwarsServiceImpl implements StarwarsService {
 		const peopleDatabaseResponse: PeopleDatabaseResponse = DataMapper.parsePersonToSaveDatabase(createRequest);
 		const id = await this.databaseRepository.create(peopleDatabaseResponse);
 		$log.info(`${NAME_TYPE.SERVICE + NAME.CREATE} | save id ${id}`);
-		return DataMapper.parsePeopleFromDatabase(peopleDatabaseResponse);
+		return DataMapper.parsePeopleFromDatabaseSWAPI(peopleDatabaseResponse);
 	}
 
 	public async getByName(getParameters: GetParameters): Promise<PeopleResponse[]> {
@@ -44,17 +44,19 @@ export default class StarwarsServiceImpl implements StarwarsService {
 		}
 		const peopleDatabaseResponses: PeopleDatabaseResponse[] = await this.databaseRepository.getByName(getParameters.name);
 		if (peopleDatabaseResponses.length >= NUM.ONE) {
+			console.log('\n\n\nDe la base de datos\n\n\n');
 			$log.info(NAME_TYPE.SERVICE + NAME.GET_BY_NAME, JSON.stringify(peopleDatabaseResponses));
-			return peopleDatabaseResponses.map((people) => DataMapper.parsePeopleFromDatabase(people));
+			return peopleDatabaseResponses.map((people) => DataMapper.parsePeopleFromSwapi(people));
 		}
+		console.log('\n\n\nDel API \n\n\n');
 		const peopleResponse: PeopleSwapiResponse[] = await this._searchByWord(getParameters.name, NAME.GET_BY_NAME);
 		return peopleResponse.map((people) => DataMapper.parsePeopleFromSwapi(people));
 	}
 
 	private async _searchByWord(word: string, origin: NAME): Promise<PeopleSwapiResponse[]> {
 		const { statusCode, body } = await this.swapiProvider.search(word);
-		if ((body as swapiResponse).count === NUM.ZERO) throw new NotFoundProviderException(origin, `Not found value: ${word}`);
 		if (statusCode !== HTTP.STATUS_CODE_200) throw new BadRequestException(origin, `bad request value: ${word}`);
+		if ((body as swapiResponse).count === NUM.ZERO) throw new NotFoundProviderException(origin, `Not found value: ${word}`);
 		return (body as swapiResponse).results;
 	}
 }

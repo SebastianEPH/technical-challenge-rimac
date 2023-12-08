@@ -5,18 +5,11 @@ import ERRORS from '../common/constants/errors.constans';
 import InternalServerErrorException from '../common/exceptions/Internal-server-error.exception';
 import BadRequestException from '../common/exceptions/bad-request.exception';
 import BodyBadRequestException from '../common/exceptions/body-bad-request.exception';
-import NotFoundDatabaseException from '../common/exceptions/not-found-database.exception';
 import NotFoundProviderException from '../common/exceptions/not-found-provider.exception';
 
 export default class ErrorUtil {
 	public static catch(e: Error, functionName: NAME): Error {
-		if (
-			e instanceof NotFoundDatabaseException ||
-			e instanceof NotFoundProviderException ||
-			e instanceof BadRequestException ||
-			e instanceof BodyBadRequestException ||
-			e instanceof InternalServerErrorException
-		) {
+		if (e instanceof NotFoundProviderException || e instanceof BadRequestException || e instanceof BodyBadRequestException || e instanceof InternalServerErrorException) {
 			$log.error(`${e.origin} ${functionName} | exception`, JSON.stringify(e));
 			$log.error(`${e.origin} | ${e.originDescription} | Error`, JSON.stringify(e.response));
 			return e;

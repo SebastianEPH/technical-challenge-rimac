@@ -148,10 +148,10 @@ export default class CreateRequest {
 		this.birth_year = createRequestProps.fecha_de_nacimiento;
 		this.gender = createRequestProps.genero;
 		this.homeworld = createRequestProps.planeta_natal;
-		this.films = createRequestProps.peliculas;
-		this.species = createRequestProps.especies;
-		this.vehicles = createRequestProps.vehiculos;
-		this.starships = createRequestProps.naves_estelares;
+		this.films = createRequestProps.peliculas as string[];
+		this.species = createRequestProps.especies as string[];
+		this.vehicles = createRequestProps.vehiculos as string[];
+		this.starships = createRequestProps.naves_estelares as string[];
 		this.url = createRequestProps.url;
 	}
 }

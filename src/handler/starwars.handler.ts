@@ -29,8 +29,9 @@ export default class StarwarsHandler {
 	async get(event: APIGatewayEvent): Promise<ResponseVO> {
 		$log.info(NAME_TYPE.HANDLER + NAME.GET_BY_NAME);
 		try {
-			console.log('event.queryStringParameters', event.queryStringParameters);
-			const getParameters: GetParameters = new GetParameters(event.queryStringParameters as any);
+			console.log(event);
+			$log.info('event.queryStringParameters', event.queryStringParameters);
+			const getParameters: GetParameters = new GetParameters((event.queryStringParameters as any) || {});
 			const resposne = await this.tokenService.getByName(getParameters);
 			return new ResponseVO(HTTP.STATUS_CODE_200, resposne);
 		} catch (e) {

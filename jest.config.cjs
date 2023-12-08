@@ -5,7 +5,7 @@ module.exports = {
 	// silent: true,
 	collectCoverage: true,
 	coverageReporters: ["text", "text-summary"],
-	collectCoverageFrom: ["./app/**"],
+	collectCoverageFrom: ["./src/**"],
 	coverageThreshold: {
 		global: {
 			statements: 90,

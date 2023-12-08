@@ -4,7 +4,7 @@ import { DatabaseRepository } from '../database.repository';
 import { NAME, NAME_TYPE } from '../../utils/enum';
 import { ConnectionDatabase } from '../../database/connection.database';
 import TYPES from '../../types';
-import MySQL_QUERIES from '../../database/queries/mySQL_QUERIES';
+import MySQL_QUERIES from '../../database/queries/mysql.queries';
 import { PeopleDatabaseResponse } from '../../interfaces/people-database-response.interface';
 import { DatabaseResult } from '../../interfaces/database-result.interface';
 
