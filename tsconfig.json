@@ -13,6 +13,6 @@
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
 	},
-	"include": ["app/**/*.ts", "test/**/*.ts", "./jest.config.js", "app/invoke/core-pci"],
+	"include": ["src/**/*.ts", "test/**/*.ts", "./jest.config.js", "src/invoke/core-pci"],
 	"exclude": ["node_modules"]
 }

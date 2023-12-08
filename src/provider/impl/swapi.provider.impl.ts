@@ -8,28 +8,20 @@ import { HOST, NAME, NAME_TYPE } from '../../utils/enum';
 import ResponseProvider from '../../interfaces/provider-response.interface';
 
 @injectable()
-export default class SwapiMockProviderImpl implements SwapiProvider {
+export default class SwapiProviderImpl implements SwapiProvider {
 	constructor(
 		@inject(TYPES.ApiConnectorUtil)
 		@named(TAG.SWAPI_PROD)
 		private ApiConnectorUtil: ApiConnectorUtil
 	) {}
 
-	public async get(word: string): Promise<ResponseProvider> {
+	public async search(word: string): Promise<ResponseProvider> {
 		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME}`);
 		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME} Request: `, JSON.stringify({}));
 		const endpoint: string = `/api/people/?search=${word}`;
 		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME} endpoint: ${HOST.SWAPI + endpoint}`);
 		const { statusCode, body } = await this.ApiConnectorUtil.get(endpoint);
 		$log.debug(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME} Response: `, JSON.stringify({ statusCode, body }));
-		return {
-			statusCode,
-			body,
-		};
-	}
-	public async post(data: any): Promise<ResponseProvider> {
-		$log.info(``);
-
-		return data;
+		return { statusCode, body };
 	}
 }

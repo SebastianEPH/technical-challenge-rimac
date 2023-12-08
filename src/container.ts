@@ -8,7 +8,7 @@ import ApiConnectorUtil from './utils/api-connector';
 import { SwapiProvider } from './provider/swapi.provider';
 import StarwarsServiceImpl from './service/implements/starwars.service.impl';
 import DataMapper from './mapper/data.mapper';
-import SwapiMockProviderImpl from './provider/impl/swapi-mock.provider.impl';
+import SwapiProviderImpl from './provider/impl/swapi.provider.impl';
 import { ENV, HOST, TIMEOUT } from './utils/enum';
 import TAG from './tag';
 import ConfigDatabase from './interfaces/config-database.interface';
@@ -32,7 +32,7 @@ export const createContainer = (): Container => {
 	const connectionMysqlDatabase: ConnectionMysqlDatabase = new ConnectionMysqlDatabase(dbConfig);
 
 	container.bind<ConnectionDatabase>(TYPES.CoreClientDatabase).toConstantValue(connectionMysqlDatabase);
-	container.bind<SwapiProvider>(TYPES.SwapiProvider).to(SwapiMockProviderImpl);
+	container.bind<SwapiProvider>(TYPES.SwapiProvider).to(SwapiProviderImpl);
 	container.bind<ApiConnectorUtil>(TYPES.ApiConnectorUtil).toConstantValue(swapiApiConnector).whenTargetNamed(TAG.SWAPI_PROD);
 	container.bind<DataMapper>(TYPES.DataMapper).to(DataMapper);
 	container.bind<StarwarsHandler>(TYPES.StarWarsHandler).to(StarwarsHandler);

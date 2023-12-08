@@ -9,10 +9,10 @@ export interface PeopleResponse {
 	fecha_de_nacimiento: string;
 	genero: string;
 	planeta_natal: string;
-	peliculas?: string[];
-	especies?: string[];
-	vehiculos?: string[];
-	naves_estelares?: string[];
-	creado: string;
-	editado: string;
+	peliculas?: object | string[];
+	especies?: object | string[];
+	vehiculos?: object | string[];
+	naves_estelares?: object | string[];
+	creado: Date;
+	editado: Date;
 }

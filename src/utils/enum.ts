@@ -41,6 +41,9 @@ export enum NAME {
 export enum TIMEOUT {
 	PROVIDER = 7001,
 }
+export enum TYPE_OF {
+	OBJECT = 'object',
+}
 export enum POSITION {
 	ZERO = 0,
 	FIRST = 1,
@@ -74,8 +77,6 @@ export enum NUM {
 	FIFTY = 50,
 	ONE_HUNDRED = 100,
 	TEN_THOUSND = 10000,
-	ONE_TRILLION = 1000000000000,
-	TEN_CUATRILLION = 10000000000000000,
 }
 export enum CURRENT_ENV {
 	LOCAL = 'LOCAL',
