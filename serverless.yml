@@ -1,4 +1,4 @@
-service: fn-starwars-characters
+service: fn-starwars-peoples
 frameworkVersion: "3"
 
 package:
@@ -32,7 +32,7 @@ functions:
       APP_ENV: local
     events:
       - httpApi:
-          path: /api/v1/starwars/people/{id}
+          path: /api/v1/starwars/people
           method: get
 custom:
   esbuild:
