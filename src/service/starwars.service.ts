@@ -1,8 +1,8 @@
 import CreateRequest from '../handler/request/create.request';
 import { PeopleResponse } from '../interfaces/people-response.interface';
-import RequestGetInterface from '../interfaces/request-get.interface';
+import GetParameters from '../handler/parameters/get.parameters';
 
 export interface StarwarsService {
 	create(createRequest: CreateRequest): Promise<PeopleResponse>;
-	get(data: RequestGetInterface): Promise<any>;
+	getByName(getParameters: GetParameters): Promise<PeopleResponse[]>;
 }

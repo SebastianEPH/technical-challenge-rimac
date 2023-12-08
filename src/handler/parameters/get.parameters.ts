@@ -1,7 +1,7 @@
 import { IsDefined, IsString, Length } from 'class-validator';
 import { MAX_WORD, MIN_WORD } from '../../utils/constants';
 
-export default class CreateRequest {
+export default class GetParameters {
 	@IsDefined({
 		message: JSON.stringify({ error: 'error' }),
 	})
@@ -11,9 +11,9 @@ export default class CreateRequest {
 	@Length(MIN_WORD, MAX_WORD, {
 		message: JSON.stringify({ error: 'error' }),
 	})
-	searchAndInsertByWord: string;
+	name: string;
 
-	constructor({ buscar_e_insertar }: { buscar_e_insertar: string }) {
-		this.searchAndInsertByWord = buscar_e_insertar;
+	constructor({ nombre }: { nombre: string }) {
+		this.name = nombre;
 	}
 }

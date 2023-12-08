@@ -16,12 +16,12 @@ export default class SwapiMockProviderImpl implements SwapiProvider {
 	) {}
 
 	public async get(word: string): Promise<ResponseProvider> {
-		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET}`);
-		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET} Request: `, JSON.stringify({}));
+		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME}`);
+		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME} Request: `, JSON.stringify({}));
 		const endpoint: string = `/api/people/?search=${word}`;
-		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET} endpoint: ${HOST.SWAPI + endpoint}`);
+		$log.info(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME} endpoint: ${HOST.SWAPI + endpoint}`);
 		const { statusCode, body } = await this.ApiConnectorUtil.get(endpoint);
-		$log.debug(`${NAME_TYPE.PROVIDER + NAME.GET} Response: `, JSON.stringify({ statusCode, body }));
+		$log.debug(`${NAME_TYPE.PROVIDER + NAME.GET_BY_NAME} Response: `, JSON.stringify({ statusCode, body }));
 		return {
 			statusCode,
 			body,

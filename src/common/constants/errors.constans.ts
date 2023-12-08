@@ -2,8 +2,11 @@ const ERRORS = {
 	INTERNAL_SERVER: {
 		message: 'INTERNAL SERVER ERRORR',
 	},
-	NOT_FOUND: {
-		message: 'NOT_FOUND',
+	NOT_FOUND_FROM_DATABASE: {
+		message: 'NOT_FOUND_FROM_DATABASE',
+	},
+	NOT_FOUND_FROM_PROVIDER: {
+		message: 'NOT_FOUND_FROM_PROVIDER',
 	},
 	BAD_REQUEST: {
 		message: 'BAD_REQUEST',

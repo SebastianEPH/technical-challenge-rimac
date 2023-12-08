@@ -33,9 +33,9 @@ export enum NAME_TYPE {
 }
 export enum NAME {
 	CREATE = 'create() | ',
-	GET = 'get() | ',
-	PARSE_PEOPLE_SWAPI = 'parsePeopleSwapi() | ',
-	PARSE_PEOPLE_DATABASE = 'parsePeopleDatabase() | ',
+	GET_BY_NAME = 'getByName() | ',
+	PARSE_PEOPLE_FROM_SWAPI = 'parsePeopleFromSwapi() | ',
+	PARSE_PEOPLE_FROM_DATABASE = 'parsePeopleFromDatabase() | ',
 	PARSE_STATUS_CODE = 'parseStatusCode() | ',
 }
 export enum TIMEOUT {
@@ -54,7 +54,29 @@ export enum POSITION {
 	NINTH = 9,
 	TENTH = 10,
 }
-
+export enum NUM {
+	ZERO = 0,
+	ONE = 1,
+	TWO = 2,
+	THREE = 3,
+	FOUR = 4,
+	FIVE = 5,
+	SIX = 6,
+	SEVEN = 7,
+	EIGHT = 8,
+	NINE = 9,
+	TEN = 10,
+	TWELVE = 12,
+	THIRTEEN = 13,
+	SIXTEEN = 16,
+	NINE_TEEN = 19,
+	TWENTY_FIVE = 25,
+	FIFTY = 50,
+	ONE_HUNDRED = 100,
+	TEN_THOUSND = 10000,
+	ONE_TRILLION = 1000000000000,
+	TEN_CUATRILLION = 10000000000000000,
+}
 export enum CURRENT_ENV {
 	LOCAL = 'LOCAL',
 	PRODUCTION = 'PROD',

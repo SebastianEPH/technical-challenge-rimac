@@ -5,47 +5,36 @@ import { PeopleSwapiResponse } from '../../interfaces/people-swapi-response.inte
 import { NAME, NAME_TYPE } from '../../utils/enum';
 import { ConnectionDatabase } from '../../database/connection.database';
 import TYPES from '../../types';
-import MysqlQueries from '../../database/queries/mysql.queries';
+import MySQL_QUERIES from '../../database/queries/mySQL_QUERIES';
 import { PeopleDatabaseResponse } from '../../interfaces/people-database-response.interface';
+import { DatabaseResult } from '../../interfaces/database-result.interface';
+import GetParameters from '../../handler/parameters/get.parameters';
+import DataMapper from '../../mapper/data.mapper';
 
 @injectable()
 export default class DatabaseMysqlRepositoryImpl implements DatabaseRepository {
 	constructor(@inject(TYPES.CoreClientDatabase) private coreClientDb: ConnectionDatabase) {}
 
-	public async create(peopleResponse: PeopleSwapiResponse): Promise<void> {
+	public async create(peopleResponse: PeopleSwapiResponse): Promise<number> {
 		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE);
-		const query = MysqlQueries.create;
-		const nuevaPersona = {
-			name: 'NombrePersona',
-			height: 'AlturaPersona',
-			mass: 'PesoPersona',
-			hair_color: 'ColorCabello',
-			skin_color: 'ColorPiel',
-			eye_color: 'ColorOjos',
-			birth_year: 'AñoNacimiento',
-			gender: 'Género',
-			homeworld: 'PlanetaNatal',
-			create: new Date(),
-			edited: new Date(),
-			url: 'URLPersona',
-			created_at: new Date().toISOString(),
-		};
-		$log.info('nuevaPersona:   ', nuevaPersona);
-		$log.info('peopleResponse: ', peopleResponse);
-
-		const result = await this.coreClientDb.pool().query(query, nuevaPersona);
-		console.log('Persona insertada. ID:', result);
-		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params: nuevaPersona }));
+		const query = MySQL_QUERIES.CREATE;
+		const peopleDatabaseResponse = DataMapper.parsePersonToSaveDatabase(peopleResponse);
+		const [result] = await this.coreClientDb.pool().query(query, peopleDatabaseResponse);
+		const id: number = (result as DatabaseResult).insertId;
+		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params: peopleDatabaseResponse, result }));
+		return id;
 	}
 
-	public async get(peopleResponse: any): Promise<PeopleDatabaseResponse[]> {
-		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.GET);
-		const query = MysqlQueries.get;
-		const [result, gaaa] = await this.coreClientDb.pool().query(query);
-		console.log('get | result:', result);
+	public async getByName(getParameters: GetParameters): Promise<PeopleDatabaseResponse[]> {
+		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.GET_BY_NAME);
+		const query = MySQL_QUERIES.GET_BY_NAME;
+		const params = [getParameters.name.toLowerCase()];
+
+		const [result, gaaa] = await this.coreClientDb.pool().query(query, params); //
+		console.log('\n\n\nget | result:', result);
 		console.log('get | gaaa:', gaaa);
 
-		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params: '' }));
+		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params }));
 		return result as PeopleDatabaseResponse[];
 	}
 }

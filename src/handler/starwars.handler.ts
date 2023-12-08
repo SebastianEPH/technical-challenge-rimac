@@ -7,15 +7,15 @@ import ResponseVO from '../models/response.vo';
 import { HTTP, NAME, NAME_TYPE } from '../utils/enum';
 import ErrorUtil from '../utils/error.util';
 import CreateRequest from './request/create.request';
+import GetParameters from './parameters/get.parameters';
 
 @injectable()
 export default class StarwarsHandler {
 	constructor(@inject(TYPES.StarWarsService) private tokenService: StarwarsService) {}
 
 	async create(event: APIGatewayEvent): Promise<ResponseVO> {
-		$log.info(NAME_TYPE.SERVICE + NAME.CREATE);
+		$log.info(NAME_TYPE.HANDLER + NAME.CREATE);
 		try {
-			// console.log('event: ', event.pathParameters);
 			const body = JSON.parse(event?.body);
 			const createRequest: CreateRequest = new CreateRequest(body);
 			const resposne = await this.tokenService.create(createRequest);
@@ -27,15 +27,15 @@ export default class StarwarsHandler {
 	}
 
 	async get(event: APIGatewayEvent): Promise<ResponseVO> {
-		$log.info(NAME_TYPE.SERVICE + NAME.GET);
+		$log.info(NAME_TYPE.HANDLER + NAME.GET_BY_NAME);
 		try {
-			console.log('event: ', event);
-
-			const resposne = await this.tokenService.get(event);
+			console.log('event.queryStringParameters', event.queryStringParameters);
+			const getParameters: GetParameters = new GetParameters(event.queryStringParameters as any);
+			const resposne = await this.tokenService.getByName(getParameters);
 			return new ResponseVO(HTTP.STATUS_CODE_200, resposne);
 		} catch (e) {
-			if (ErrorUtil.catch(e, NAME.GET)) return e.response;
-			return ErrorUtil.error500(e, NAME.GET);
+			if (ErrorUtil.catch(e, NAME.GET_BY_NAME)) return e.response;
+			return ErrorUtil.error500(e, NAME.GET_BY_NAME);
 		}
 	}
 }
