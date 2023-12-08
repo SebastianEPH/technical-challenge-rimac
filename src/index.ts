@@ -1,11 +1,12 @@
 import 'reflect-metadata';
 import { Handler } from 'aws-lambda';
 import { Container } from 'inversify';
+import { config } from 'dotenv';
 import TYPES from './types';
 import StarwarsHandler from './handler/starwars.handler';
 import { createContainer } from './container';
 import ResponseVO from './models/response.vo';
-import { config } from 'dotenv';
+
 config();
 
 const container: Container = createContainer();

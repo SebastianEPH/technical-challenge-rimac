@@ -1,7 +1,7 @@
 import 'reflect-metadata';
-import ApiConnectorUtil from '../../src/utils/api-connector';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
+import ApiConnectorUtil from '../../src/utils/api-connector';
 import { HTTP } from '../../src/utils/enum';
 
 describe('ApiConnectorUtil', () => {

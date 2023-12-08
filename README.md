@@ -1,4 +1,4 @@
-# Technical Challenge RIMAC
+# Technical Challenge | RIMAC
 
 ![](https://imgur.com/fv4cOuC.png)
 
@@ -9,6 +9,7 @@
     ````c
     # DATABASE CREDENTIALS MYSQL
     MYSQL_ROOT_PASSWORD='12345678'
+    DATABASE_MYSQL_HOST='localhost'
     DATABASE_MYSQL_NAME='db_starwars'
     DATABASE_MYSQL_USER='username'
     DATABASE_MYSQL_PASSWORD='12345678'
@@ -16,33 +17,49 @@
     ````
 2. Install MYSQL with DOCKER => `docker-compose up -d`
 3. Run database script `database.sql`
-4. Install dependencies => `npm install` 
+4. Install dependencies => `npm install`
 4. Run project local => `npm run start:api`
 
 ## RUN ONLINE
 1. Set the following environment variables in your AWS, with your DB(MySQL) credentials
     ````c
     # DATABASE CREDENTIALS MYSQL
-    MYSQL_ROOT_PASSWORD='12345678'
-    DATABASE_MYSQL_NAME='db_starwars'
-    DATABASE_MYSQL_USER='username'
-    DATABASE_MYSQL_PASSWORD='12345678'
-    DATABASE_MYSQL_PORT='3306'
+    DATABASE_MYSQL_HOST=''
+    DATABASE_MYSQL_NAME=''
+    DATABASE_MYSQL_USER=''
+    DATABASE_MYSQL_PASSWORD=''
+    DATABASE_MYSQL_PORT=''
     ````
-2. run deploy => `npm run deploy`
+![](https://imgur.com/Zy3Jydo.png)
 
+2. run deploy => `npm run deploy`
+![](https://imgur.com/wtsA6H6.png)
+![](https://imgur.com/g3e6VNA.png)
+
+3. Use =>
+
+![](https://imgur.com/hfHPqiZ.png)
+![](https://imgur.com/u1YRF0t.png)
 __Note:__ `remember to configure your .aws credentials`
 
 ## DOCUMENTATION
 
 1. Open swagger `swagger.yaml`
 
-## USE API ONLINE 
+## USE API ONLINE
 
-1. Postman WEB => 
+1. Postman WEB => [https://www.postman.com/sebastianeph2/workspace/technical-challenge-rimac/request/21995973-0266bcc2-e8ae-40d8-8d97-f6445aababcd]()
+2. Fork
+3. HOST = > `https://ktrp0zo4sa.execute-api.us-west-2.amazonaws.com`
+4. Select Environments = > LOCAL or ONLINE
+![](https://imgur.com/UwZqc0n.png)
 
 
-## TEST TDD | COVERAGE 100% 
+## USE MOCK DATABASE WITH INVESTMENT CONTROL
+
+![](https://imgur.com/OK8ETyI.png)
+
+## TEST TDD | COVERAGE 100%
 
 run test => `npm run test`
 
@@ -52,11 +69,12 @@ run test => `npm run test`
 ## DIAGRAM OF SEQUENCE
 
 ### CREATE
-![](https://imgur.com/43tnPgb.png)
-link=> [https://imgur.com/43tnPgb.png](https://imgur.com/43tnPgb.png)
-
-### GET_BY_NAME
 ![](https://imgur.com/1k63Ugj.png)
 link=> [https://imgur.com/1k63Ugj.png](https://imgur.com/1k63Ugj.png)
 
-by `SebastiánEPH`
+### GET_BY_NAME
+
+![](https://imgur.com/43tnPgb.png)
+link=> [https://imgur.com/43tnPgb.png](https://imgur.com/43tnPgb.png)
+
+by `SebastiánEPH` | sebastianeph99@gmail.com

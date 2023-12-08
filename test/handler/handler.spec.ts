@@ -1,8 +1,8 @@
 import 'reflect-metadata';
+import { APIGatewayEvent } from 'aws-lambda';
 import { StarwarsService } from '../../src/service/starwars.service';
 import StarwarsHandler from '../../src/handler/starwars.handler';
 import ResponseVO from '../../src/models/response.vo';
-import { APIGatewayEvent } from 'aws-lambda';
 import { HTTP } from '../../src/utils/enum';
 import BodyBadRequestException from '../../src/common/exceptions/body-bad-request.exception';
 import NotFoundProviderException from '../../src/common/exceptions/not-found-provider.exception';
@@ -122,6 +122,12 @@ describe('Should test the StarwarsService Controller', () => {
 			it('Should return an error with exception NotFoundProviderException', async () => {
 				mockStarwarsService.create.mockRejectedValue(new NotFoundProviderException('', ''));
 				const result = await threeDSHandler.create(mockApiGatewayEvent);
+				expect(result.statusCode).toEqual(HTTP.STATUS_CODE_404);
+			});
+
+			it('Should return an error with exception mockApiGatewayEvent body not found', async () => {
+				mockStarwarsService.create.mockRejectedValue(new NotFoundProviderException('', ''));
+				const result = await threeDSHandler.create({ ...mockApiGatewayEvent, body: undefined });
 				expect(result.statusCode).toEqual(HTTP.STATUS_CODE_404);
 			});
 			it('Should return an error with exception NotFoundProviderException v2 ', async () => {
