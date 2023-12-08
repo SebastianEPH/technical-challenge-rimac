@@ -9,6 +9,7 @@
     ````c
     # DATABASE CREDENTIALS MYSQL
     MYSQL_ROOT_PASSWORD='12345678'
+    DATABASE_MYSQL_HOST='localhost'
     DATABASE_MYSQL_NAME='db_starwars'
     DATABASE_MYSQL_USER='username'
     DATABASE_MYSQL_PASSWORD='12345678'
@@ -23,14 +24,22 @@
 1. Set the following environment variables in your AWS, with your DB(MySQL) credentials
     ````c
     # DATABASE CREDENTIALS MYSQL
-    MYSQL_ROOT_PASSWORD='12345678'
-    DATABASE_MYSQL_NAME='db_starwars'
-    DATABASE_MYSQL_USER='username'
-    DATABASE_MYSQL_PASSWORD='12345678'
-    DATABASE_MYSQL_PORT='3306'
+    DATABASE_MYSQL_HOST=''
+    DATABASE_MYSQL_NAME=''
+    DATABASE_MYSQL_USER=''
+    DATABASE_MYSQL_PASSWORD=''
+    DATABASE_MYSQL_PORT=''
     ````
-2. run deploy => `npm run deploy`
+![](https://imgur.com/Zy3Jydo.png)
 
+2. run deploy => `npm run deploy`
+![](https://imgur.com/wtsA6H6.png)
+![](https://imgur.com/g3e6VNA.png)
+
+3. Use =>
+
+![](https://imgur.com/hfHPqiZ.png)
+![](https://imgur.com/u1YRF0t.png)
 __Note:__ `remember to configure your .aws credentials`
 
 ## DOCUMENTATION
@@ -41,7 +50,8 @@ __Note:__ `remember to configure your .aws credentials`
 
 1. Postman WEB => [https://www.postman.com/sebastianeph2/workspace/technical-challenge-rimac/request/21995973-0266bcc2-e8ae-40d8-8d97-f6445aababcd]()
 2. Fork
-3. Select Environments = > LOCAL or ONLINE
+3. HOST = > `https://ktrp0zo4sa.execute-api.us-west-2.amazonaws.com`
+4. Select Environments = > LOCAL or ONLINE
 ![](https://imgur.com/UwZqc0n.png)
 
 

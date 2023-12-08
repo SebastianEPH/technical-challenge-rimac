@@ -166,8 +166,8 @@ info:
   version: 1.0.0
   termsOfService: "https://culqi.com/terminos_y_condiciones"
 servers:
+  - url: https://ktrp0zo4sa.execute-api.us-west-2.amazonaws.com
   - url: http://localhost:3000
-  - url: http://localhost:3300
 paths:
   /api/v1/starwars/people:
     post:

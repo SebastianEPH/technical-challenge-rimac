@@ -7,7 +7,7 @@
 	"type": "module",
 	"scripts": {
 		"start:api": "cross-env NODE_ENV=LOCAL serverless offline",
-		"deploy": "cross-env NODE_ENV=PROD serverless deploy --aws-profile default --force",
+		"deploy": "npm run sls-build && cross-env NODE_ENV=PROD serverless deploy --aws-profile default --force",
 		"zip": "./zip.sh",
 		"build": "tsc",
 		"package": "npm run sls-build && mkdir dist && mv ./.serverless/${npm_package_name}.zip ./dist/src.zip",

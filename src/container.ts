@@ -4,7 +4,7 @@ import { StarwarsService } from './service/starwars.service';
 import StarwarsHandler from './handler/starwars.handler';
 import { DatabaseRepository } from './repository/database.repository';
 import DatabaseMysqlRepositoryImpl from './repository/implements/database.mysql.repository.impl'; /* USE DATABASE REAL */
-// import DatabaseMockRepositoryImpl from "./repository/implements/database.mock.repository.impl"; /* USE DATABASE MOCK */
+// import DatabaseMockRepositoryImpl from './repository/implements/database.mock.repository.impl'; /* USE DATABASE MOCK */
 import ApiConnectorUtil from './utils/api-connector';
 import { SwapiProvider } from './provider/swapi.provider';
 import StarwarsServiceImpl from './service/implements/starwars.service.impl';
