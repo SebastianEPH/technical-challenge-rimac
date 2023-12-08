@@ -124,6 +124,12 @@ describe('Should test the StarwarsService Controller', () => {
 				const result = await threeDSHandler.create(mockApiGatewayEvent);
 				expect(result.statusCode).toEqual(HTTP.STATUS_CODE_404);
 			});
+
+			it('Should return an error with exception mockApiGatewayEvent body not found', async () => {
+				mockStarwarsService.create.mockRejectedValue(new NotFoundProviderException('', ''));
+				const result = await threeDSHandler.create({ ...mockApiGatewayEvent, body: undefined });
+				expect(result.statusCode).toEqual(HTTP.STATUS_CODE_404);
+			});
 			it('Should return an error with exception NotFoundProviderException v2 ', async () => {
 				mockStarwarsService.create.mockRejectedValue(new NotFoundProviderException());
 				const result = await threeDSHandler.create(mockApiGatewayEvent);
