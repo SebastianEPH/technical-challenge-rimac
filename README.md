@@ -49,8 +49,14 @@ run test => `npm run test`
 ![](https://imgur.com/8Ry208d.png)
 
 
+## DIAGRAM OF SEQUENCE
 
+### CREATE
+![](https://imgur.com/43tnPgb.png)
+link=> [https://imgur.com/43tnPgb.png](https://imgur.com/43tnPgb.png)
 
-
+### GET_BY_NAME
+![](https://imgur.com/1k63Ugj.png)
+link=> [https://imgur.com/1k63Ugj.png](https://imgur.com/1k63Ugj.png)
 
 by `SebastiánEPH`
