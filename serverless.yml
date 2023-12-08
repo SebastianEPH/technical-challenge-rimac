@@ -1,4 +1,4 @@
-service: fn-starwars-characters
+service: fn-starwars-peoples
 frameworkVersion: "3"
 
 package:
