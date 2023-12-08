@@ -2,139 +2,138 @@ import { ArrayMinSize, IsArray, IsDefined, IsString, Length } from 'class-valida
 import { MAX_WORD, MIN_WORD } from '../../utils/constants';
 import { PeopleResponse } from '../../interfaces/people-response.interface';
 import { NUM } from '../../utils/enum';
+import ERRORS from '../../common/constants/errors.constans';
 
 export default class CreateRequest {
 	@IsDefined({
-		message: JSON.stringify({ error: 'name' }),
+		message: ERRORS.VALIDATOR_PARAMS_NAME,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'name' }),
+		message: ERRORS.VALIDATOR_PARAMS_NAME,
 	})
-	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'name' }),
-	})
+	@Length(MIN_WORD, MAX_WORD, { message: ERRORS.VALIDATOR_PARAMS_NAME })
 	name: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'height' }),
+		message: ERRORS.VALIDATOR_PARAMS_HEIGHT,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'height' }),
+		message: ERRORS.VALIDATOR_PARAMS_HEIGHT,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'height' }),
+		message: ERRORS.VALIDATOR_PARAMS_HEIGHT,
 	})
 	height: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'mass' }),
+		message: ERRORS.VALIDATOR_PARAMS_MASS,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'mass' }),
+		message: ERRORS.VALIDATOR_PARAMS_MASS,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'mass' }),
+		message: ERRORS.VALIDATOR_PARAMS_MASS,
 	})
 	mass: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'hairColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_HAIR_COLOR,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'hairColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_HAIR_COLOR,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'hairColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_HAIR_COLOR,
 	})
 	hair_color: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'skinColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_SKIN_COLOR,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'skinColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_SKIN_COLOR,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'skinColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_SKIN_COLOR,
 	})
 	skin_color: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'eyeColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_EYE_COLOR,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'eyeColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_EYE_COLOR,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'eyeColor' }),
+		message: ERRORS.VALIDATOR_PARAMS_EYE_COLOR,
 	})
 	eye_color: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'birthYear' }),
+		message: ERRORS.VALIDATOR_PARAMS_BIRTH_YEAR,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'birthYear' }),
+		message: ERRORS.VALIDATOR_PARAMS_BIRTH_YEAR,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'birthYear' }),
+		message: ERRORS.VALIDATOR_PARAMS_BIRTH_YEAR,
 	})
 	birth_year: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'gender' }),
+		message: ERRORS.VALIDATOR_PARAMS_GENDER,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'gender' }),
+		message: ERRORS.VALIDATOR_PARAMS_GENDER,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'gender' }),
+		message: ERRORS.VALIDATOR_PARAMS_GENDER,
 	})
 	gender: string;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'homeworld' }),
+		message: ERRORS.VALIDATOR_PARAMS_HOME_WORLD,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'homeworld' }),
+		message: ERRORS.VALIDATOR_PARAMS_HOME_WORLD,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'homeworld' }),
+		message: ERRORS.VALIDATOR_PARAMS_HOME_WORLD,
 	})
 	homeworld: string;
 
-	@ArrayMinSize(NUM.ONE, { message: 'Debe haber al menos un elemento en el array' })
-	@IsArray({ message: JSON.stringify({ error: 'films' }) })
-	@IsString({ each: true, message: 'Cada hobby debe ser una cadena de texto' })
-	@Length(MIN_WORD, MAX_WORD, { each: true, message: JSON.stringify({ error: 'films' }) })
+	@ArrayMinSize(NUM.ONE, { message: ERRORS.VALIDATOR_PARAMS_FILMS })
+	@IsArray({ message: ERRORS.VALIDATOR_PARAMS_FILMS })
+	@IsString({ each: true, message: ERRORS.VALIDATOR_PARAMS_FILMS })
+	@Length(MIN_WORD, MAX_WORD, { each: true, message: ERRORS.VALIDATOR_PARAMS_FILMS })
 	films: string[] | object;
 
-	@ArrayMinSize(NUM.ONE, { message: JSON.stringify({ error: 'species' }) })
-	@IsArray({ message: JSON.stringify({ error: 'species' }) })
-	@IsString({ each: true, message: JSON.stringify({ error: 'species' }) })
-	@Length(MIN_WORD, MAX_WORD, { each: true, message: JSON.stringify({ error: 'species' }) })
+	@ArrayMinSize(NUM.ONE, { message: ERRORS.VALIDATOR_PARAMS_ESPECIES })
+	@IsArray({ message: ERRORS.VALIDATOR_PARAMS_ESPECIES })
+	@IsString({ each: true, message: ERRORS.VALIDATOR_PARAMS_ESPECIES })
+	@Length(MIN_WORD, MAX_WORD, { each: true, message: ERRORS.VALIDATOR_PARAMS_ESPECIES })
 	species: string[] | object;
 
-	@ArrayMinSize(NUM.ONE, { message: JSON.stringify({ error: 'vehicles' }) })
-	@IsArray({ message: JSON.stringify({ error: 'vehicles' }) })
-	@IsString({ each: true, message: JSON.stringify({ error: 'vehicles' }) })
-	@Length(MIN_WORD, MAX_WORD, { each: true, message: JSON.stringify({ error: 'vehicles' }) })
+	@ArrayMinSize(NUM.ONE, { message: ERRORS.VALIDATOR_PARAMS_VEHICLES })
+	@IsArray({ message: ERRORS.VALIDATOR_PARAMS_VEHICLES })
+	@IsString({ each: true, message: ERRORS.VALIDATOR_PARAMS_VEHICLES })
+	@Length(MIN_WORD, MAX_WORD, { each: true, message: ERRORS.VALIDATOR_PARAMS_VEHICLES })
 	vehicles: string[] | object;
 
-	@ArrayMinSize(NUM.ONE, { message: JSON.stringify({ error: 'starships' }) })
-	@IsArray({ message: JSON.stringify({ error: 'species' }) })
-	@IsString({ each: true, message: JSON.stringify({ error: 'starships' }) })
-	@Length(MIN_WORD, MAX_WORD, { each: true, message: JSON.stringify({ error: 'starships' }) })
+	@ArrayMinSize(NUM.ONE, { message: ERRORS.VALIDATOR_PARAMS_STARTSHIPS })
+	@IsArray({ message: ERRORS.VALIDATOR_PARAMS_STARTSHIPS })
+	@IsString({ each: true, message: ERRORS.VALIDATOR_PARAMS_STARTSHIPS })
+	@Length(MIN_WORD, MAX_WORD, { each: true, message: ERRORS.VALIDATOR_PARAMS_STARTSHIPS })
 	starships: string[] | object;
 
 	@IsDefined({
-		message: JSON.stringify({ error: 'url' }),
+		message: ERRORS.VALIDATOR_PARAMS_URL,
 	})
 	@IsString({
-		message: JSON.stringify({ error: 'url' }),
+		message: ERRORS.VALIDATOR_PARAMS_URL,
 	})
 	@Length(MIN_WORD, MAX_WORD, {
-		message: JSON.stringify({ error: 'url' }),
+		message: ERRORS.VALIDATOR_PARAMS_URL,
 	})
 	url: string;
 

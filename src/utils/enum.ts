@@ -79,6 +79,33 @@ export enum NUM {
 	ONE_HUNDRED = 100,
 	TEN_THOUSND = 10000,
 }
+export enum ERROR_OBJECT {
+	ERROR = 'error',
+}
+export enum ERROR_TYPE {
+	PARAMETER_ERROR = 'parameter_error',
+	API = 'api',
+}
+
+export enum PARAMS {
+	URL = 'url',
+	NOMBRE = 'nombre',
+	ALTURA = 'altura',
+	MASA = 'masa',
+	COLOR_DEL_CABELLO = 'color_del_cabello',
+	COLOR_DE_PIEL = 'color_de_piel',
+	COLOR_DE_OJOS = 'color_de_ojos',
+	FECHA_DE_NACIMIENTO = 'fecha_de_nacimiento',
+	GENERO = 'genero',
+	PLANETA_NATAL = 'planeta_natal',
+	PELICULAS = 'peliculas',
+	ESPECIES = 'especies',
+	VEHICULOS = 'vehiculos',
+	NAVES_ESTEREALES = 'naves_estelares',
+	CREADO = 'creado',
+	EDITADO = 'editado',
+}
+
 export enum CURRENT_ENV {
 	LOCAL = 'LOCAL',
 	PRODUCTION = 'PROD',

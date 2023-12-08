@@ -140,15 +140,12 @@ components:
         type:
           type: string
           example: "parameter_error"
-        merchant_message:
+        message:
           type: string
-          example: "El número de la tarjeta no es un número de tarjeta de crédito o débito válido. Tiene que ser numérico de 13 a 16 digitos."
-        user_message:
-          type: string
-          example: "El numero de tarjeta de crédito o débito brindado no es válido."
+          example: "El valor nombre tiene un formato inválido"
         param:
           type: string
-          example: "card_number"
+          example: "nombre"
     CreateExampleErrorResponse500:
       title: CreateExampleErrorResponse500
       type: object
@@ -158,13 +155,10 @@ components:
           example: "error"
         type:
           type: string
-          example: "api_error"
-        merchant_message:
+          example: "apir"
+        message:
           type: string
-          example: "Ups! Algo salió mal en Culqi. Contáctate con culqi.com/soporte para obtener más información."
-        user_message:
-          type: string
-          example: "Contactáte con soporte"
+          example: "error interno"
 
 info:
   title: fn-starwars-peoples
@@ -218,7 +212,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/CreateExampleResponse"
         "400":
-          description: Error cuando el id no es válido.
+          description: Error cuando el nombre no es válido o no existe
           content:
             application/json:
               schema:
@@ -232,10 +226,10 @@ paths:
                     example: "parameter_error"
                   merchant_message:
                     type: string
-                    example: "El parámetro 'id' es inválido. La longitud debe ser de '25' caracteres."
+                    example: "El parámetro nombre es inválido. La longitud debe ser de '25' caracteres."
                   param:
                     type: string
-                    example: "id"
+                    example: "nombre"
         "500":
           description: Es un error interno
           content:
@@ -244,8 +238,8 @@ paths:
                 $ref: "#/components/schemas/CreateExampleErrorResponse500"
 
     get:
-      operationId: Obtiene los registros "PEOPLE" mediante el nombre 
-      summary: Obtiene los registros "PEOPLE" mediante el nombre 
+      operationId: Obtiene los registros "PEOPLE" mediante el nombre
+      summary: Obtiene los registros "PEOPLE" mediante el nombre
       description: Busca en la base de datos si se encuentra el registro, en caso contrario, va a buscar al API de SWAPI
       tags:
         - Endpoints públicos
@@ -267,7 +261,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/CreateExampleResponse"
         "400":
-          description: Error cuando el id no es válido.
+          description: Error cuando el nombre no es válido o no existe
           content:
             application/json:
               schema:
@@ -281,10 +275,10 @@ paths:
                     example: "parameter_error"
                   merchant_message:
                     type: string
-                    example: "El parámetro 'id' es inválido. La longitud debe ser de '25' caracteres."
+                    example: "El parámetro nombre es inválido. La longitud debe ser de '25' caracteres."
                   param:
                     type: string
-                    example: "id"
+                    example: "nombre"
         "500":
           description: Es un error interno
           content:
