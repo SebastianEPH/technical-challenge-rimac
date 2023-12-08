@@ -16,7 +16,7 @@ export default class StarwarsHandler {
 	async create(event: APIGatewayEvent): Promise<ResponseVO> {
 		$log.info(NAME_TYPE.HANDLER + NAME.CREATE);
 		try {
-			const body = JSON.parse(event?.body);
+			const body = JSON.parse(event?.body||"{}");
 			const createRequest: CreateRequest = new CreateRequest(body);
 			const resposne = await this.tokenService.create(createRequest);
 			return new ResponseVO(HTTP.STATUS_CODE_201, resposne);

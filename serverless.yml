@@ -32,7 +32,7 @@ functions:
       APP_ENV: local
     events:
       - httpApi:
-          path: /api/v1/starwars/people/{id}
+          path: /api/v1/starwars/people
           method: get
 custom:
   esbuild:
