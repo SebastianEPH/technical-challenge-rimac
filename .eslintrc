@@ -1,0 +1,23 @@
+{
+	"env": {
+		"node": true,
+		"jest": true
+	},
+	"extends": [
+		"airbnb-base",
+		"airbnb-typescript/base",
+		"prettier"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"project": "./tsconfig.json",
+		"parser": "@typescript-eslint/parser"
+	},
+	"plugins": [
+		"import"
+	],
+	"rules": {
+		"import/prefer-default-export": "off",
+		"@typescript-eslint/naming-convention": "off"
+	}
+}
