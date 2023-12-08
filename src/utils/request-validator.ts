@@ -1,5 +1,5 @@
-import CustomErrorResponse from '../interfaces/custom.error';
 import { validate, ValidationError } from 'class-validator';
+import CustomErrorResponse from '../interfaces/custom.error';
 import { POSITION } from './enum';
 
 export default class RequestValidator {

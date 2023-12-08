@@ -27,6 +27,7 @@ export enum NAME_TYPE {
 	SERVICE = 'Service | ',
 	HANDLER = 'handler | ',
 	REPOSITORY_MYSQL = 'Repository(MYSQL) | ',
+	REPOSITORY_MOCK = 'Repository(MOCK) | ',
 	DATA_MAPPER = 'Data Mapper | ',
 	PROVIDER = 'Provider | ',
 	API_CONNECTOR = 'Api Connector | ',

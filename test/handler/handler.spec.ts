@@ -1,8 +1,8 @@
 import 'reflect-metadata';
+import { APIGatewayEvent } from 'aws-lambda';
 import { StarwarsService } from '../../src/service/starwars.service';
 import StarwarsHandler from '../../src/handler/starwars.handler';
 import ResponseVO from '../../src/models/response.vo';
-import { APIGatewayEvent } from 'aws-lambda';
 import { HTTP } from '../../src/utils/enum';
 import BodyBadRequestException from '../../src/common/exceptions/body-bad-request.exception';
 import NotFoundProviderException from '../../src/common/exceptions/not-found-provider.exception';

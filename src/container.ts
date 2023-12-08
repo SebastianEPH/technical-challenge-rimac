@@ -3,7 +3,8 @@ import TYPES from './types';
 import { StarwarsService } from './service/starwars.service';
 import StarwarsHandler from './handler/starwars.handler';
 import { DatabaseRepository } from './repository/database.repository';
-import DatabaseMysqlRepositoryImpl from './repository/implements/database.mysql.repository.impl';
+import DatabaseMysqlRepositoryImpl from './repository/implements/database.mysql.repository.impl'; /* USE DATABASE REAL */
+// import DatabaseMockRepositoryImpl from "./repository/implements/database.mock.repository.impl"; /* USE DATABASE MOCK */
 import ApiConnectorUtil from './utils/api-connector';
 import { SwapiProvider } from './provider/swapi.provider';
 import StarwarsServiceImpl from './service/implements/starwars.service.impl';
@@ -30,13 +31,14 @@ export const createContainer = (): Container => {
 		database: process.env[ENV.DATABASE_MYSQL_NAME],
 	};
 	const connectionMysqlDatabase: ConnectionMysqlDatabase = new ConnectionMysqlDatabase(dbConfig);
-
 	container.bind<ConnectionDatabase>(TYPES.CoreClientDatabase).toConstantValue(connectionMysqlDatabase);
+	container.bind<DatabaseRepository>(TYPES.DatabaseRepository).to(DatabaseMysqlRepositoryImpl); /* USE DATABASE REAL */
+	// container.bind<DatabaseRepository>(TYPES.DatabaseRepository).to(DatabaseMockRepositoryImpl); /* USE DATABASE MOCK */
 	container.bind<SwapiProvider>(TYPES.SwapiProvider).to(SwapiProviderImpl);
 	container.bind<ApiConnectorUtil>(TYPES.ApiConnectorUtil).toConstantValue(swapiApiConnector).whenTargetNamed(TAG.SWAPI_PROD);
 	container.bind<DataMapper>(TYPES.DataMapper).to(DataMapper);
 	container.bind<StarwarsHandler>(TYPES.StarWarsHandler).to(StarwarsHandler);
 	container.bind<StarwarsService>(TYPES.StarWarsService).to(StarwarsServiceImpl);
-	container.bind<DatabaseRepository>(TYPES.DatabaseRepository).to(DatabaseMysqlRepositoryImpl);
+
 	return container;
 };

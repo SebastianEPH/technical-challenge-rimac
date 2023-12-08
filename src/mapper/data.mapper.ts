@@ -32,8 +32,6 @@ export default class DataMapper {
 
 	public static parsePeopleFromSwapi(people: PeopleSwapiResponse | PeopleDatabaseResponse): PeopleResponse {
 		$log.info(NAME_TYPE.DATA_MAPPER + NAME.PARSE_PEOPLE_FROM_DATABASE);
-		console.log('parsePeopleFromSwapi pipol: ', people);
-
 		return {
 			nombre: people.name.toLowerCase().trim(),
 			altura: people.height,

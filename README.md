@@ -1,4 +1,4 @@
-# Technical Challenge RIMAC
+# Technical Challenge | RIMAC
 
 ![](https://imgur.com/fv4cOuC.png)
 
@@ -16,7 +16,7 @@
     ````
 2. Install MYSQL with DOCKER => `docker-compose up -d`
 3. Run database script `database.sql`
-4. Install dependencies => `npm install` 
+4. Install dependencies => `npm install`
 4. Run project local => `npm run start:api`
 
 ## RUN ONLINE
@@ -37,12 +37,19 @@ __Note:__ `remember to configure your .aws credentials`
 
 1. Open swagger `swagger.yaml`
 
-## USE API ONLINE 
+## USE API ONLINE
 
-1. Postman WEB => 
+1. Postman WEB => [https://www.postman.com/sebastianeph2/workspace/technical-challenge-rimac/request/21995973-0266bcc2-e8ae-40d8-8d97-f6445aababcd]()
+2. Fork
+3. Select Environments = > LOCAL or ONLINE
+![](https://imgur.com/UwZqc0n.png)
 
 
-## TEST TDD | COVERAGE 100% 
+## USE MOCK DATABASE WITH INVESTMENT CONTROL
+
+![](https://imgur.com/OK8ETyI.png)
+
+## TEST TDD | COVERAGE 100%
 
 run test => `npm run test`
 
@@ -52,11 +59,12 @@ run test => `npm run test`
 ## DIAGRAM OF SEQUENCE
 
 ### CREATE
-![](https://imgur.com/43tnPgb.png)
-link=> [https://imgur.com/43tnPgb.png](https://imgur.com/43tnPgb.png)
-
-### GET_BY_NAME
 ![](https://imgur.com/1k63Ugj.png)
 link=> [https://imgur.com/1k63Ugj.png](https://imgur.com/1k63Ugj.png)
 
-by `SebastiánEPH`
+### GET_BY_NAME
+
+![](https://imgur.com/43tnPgb.png)
+link=> [https://imgur.com/43tnPgb.png](https://imgur.com/43tnPgb.png)
+
+by `SebastiánEPH` | sebastianeph99@gmail.com

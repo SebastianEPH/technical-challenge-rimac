@@ -22,11 +22,11 @@ export default class DatabaseMysqlRepositoryImpl implements DatabaseRepository {
 	}
 
 	public async getByName(name: string): Promise<PeopleDatabaseResponse[]> {
-		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.GET_BY_NAME);
+		$log.info(NAME_TYPE.REPOSITORY_MOCK + NAME.GET_BY_NAME);
 		const query = MySQL_QUERIES.GET_BY_NAME;
 		const params = [name.toLowerCase().trim()];
 		const [result] = await this.coreClientDb.pool().query(query, params);
-		$log.info(NAME_TYPE.REPOSITORY_MYSQL + NAME.CREATE, JSON.stringify({ query, params }));
+		$log.info(NAME_TYPE.REPOSITORY_MOCK + NAME.CREATE, JSON.stringify({ query, params }));
 		return result as PeopleDatabaseResponse[];
 	}
 }
