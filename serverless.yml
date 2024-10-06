@@ -1,0 +1,51 @@
+service: fn-starwars-peoples
+frameworkVersion: "3"
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'local'}
+  profile: default
+  region: us-west-2
+
+functions:
+  create:
+    handler: src/index.handlerCreate
+    package:
+      patterns:
+        - 'config/.env*'
+    environment:
+      APP_ENV: local
+    events:
+      - httpApi:
+          path: /api/v1/starwars/people
+          method: post
+  get:
+    handler: src/index.handlerGet
+    package:
+      patterns:
+        - 'config/.env*'
+    environment:
+      APP_ENV: local
+    events:
+      - httpApi:
+          path: /api/v1/starwars/people
+          method: get
+custom:
+  esbuild:
+    concurrency: 10
+    format: "esm"
+    outputFileExtension: ".mjs"
+    platform: "node"
+    target: "esnext"
+    keepNames: ${strToBool(${env:ESBUILD_KEEPNAMES, true})}
+    minify: true
+    banner:
+      js: import { createRequire } from 'module';const require = createRequire(import.meta.url);
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
